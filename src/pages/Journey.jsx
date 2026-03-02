@@ -4,36 +4,36 @@ import { Briefcase, GraduationCap, Calendar, Loader2 } from 'lucide-react';
 import { journeyApi } from '../services/api';
 import './Journey.css';
 
+const demoExperiences = [
+    {
+        type: "work",
+        title: "Senior Full Stack Developer",
+        company: "Tech Solutions Inc.",
+        date: "2022 - Present",
+        description: "Leading the development of complex web applications using React and FastAPI. Mentoring junior developers and optimizing system architecture.",
+        icon: <Briefcase size={20} />
+    },
+    {
+        type: "work",
+        title: "Web Developer",
+        company: "Digital Agency",
+        date: "2020 - 2022",
+        description: "Developed responsive and interactive user interfaces for various clients. Integrated third-party APIs and managed database migrations.",
+        icon: <Briefcase size={20} />
+    },
+    {
+        type: "education",
+        title: "B.S. in Computer Science",
+        company: "State University",
+        date: "2016 - 2020",
+        description: "Focused on software engineering, data structures, and algorithms. Graduated with honors.",
+        icon: <GraduationCap size={20} />
+    }
+];
+
 const Journey = () => {
     const [experiences, setExperiences] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const demoExperiences = [
-        {
-            type: "work",
-            title: "Senior Full Stack Developer",
-            company: "Tech Solutions Inc.",
-            date: "2022 - Present",
-            description: "Leading the development of complex web applications using React and FastAPI. Mentoring junior developers and optimizing system architecture.",
-            icon: <Briefcase size={20} />
-        },
-        {
-            type: "work",
-            title: "Web Developer",
-            company: "Digital Agency",
-            date: "2020 - 2022",
-            description: "Developed responsive and interactive user interfaces for various clients. Integrated third-party APIs and managed database migrations.",
-            icon: <Briefcase size={20} />
-        },
-        {
-            type: "education",
-            title: "B.S. in Computer Science",
-            company: "State University",
-            date: "2016 - 2020",
-            description: "Focused on software engineering, data structures, and algorithms. Graduated with honors.",
-            icon: <GraduationCap size={20} />
-        }
-    ];
 
     useEffect(() => {
         const fetchJourney = async () => {

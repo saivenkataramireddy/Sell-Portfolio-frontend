@@ -1,42 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Layers, Loader2 } from 'lucide-react';
+import { ExternalLink, Github, Loader2 } from 'lucide-react';
 import { projectsApi } from '../services/api';
 import './Projects.css';
+
+const demoProjects = [
+    {
+        title: "E-Commerce Platform",
+        category: "Full Stack",
+        description: "A modern e-commerce solution with real-time inventory management and secure payment integration.",
+        image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        tech: ["React", "FastAPI", "Stripe", "PostgreSQL"],
+        link: "#",
+        github: "#"
+    },
+    {
+        title: "AI Image Generator",
+        category: "Frontend",
+        description: "Interactive dashboard for generating images using AI models. Features include prompt history and sharing.",
+        image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        tech: ["React", "Stable Diffusion", "Tailwind CSS"],
+        link: "#",
+        github: "#"
+    },
+    {
+        title: "Crypto Tracker",
+        category: "Web App",
+        description: "Real-time cryptocurrency monitoring tool with interactive charts and portfolio tracking features.",
+        image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        tech: ["Vue.js", "Chart.js", "CoinGecko API"],
+        link: "#",
+        github: "#"
+    }
+];
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const demoProjects = [
-        {
-            title: "E-Commerce Platform",
-            category: "Full Stack",
-            description: "A modern e-commerce solution with real-time inventory management and secure payment integration.",
-            image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            tech: ["React", "FastAPI", "Stripe", "PostgreSQL"],
-            link: "#",
-            github: "#"
-        },
-        {
-            title: "AI Image Generator",
-            category: "Frontend",
-            description: "Interactive dashboard for generating images using AI models. Features include prompt history and sharing.",
-            image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            tech: ["React", "Stable Diffusion", "Tailwind CSS"],
-            link: "#",
-            github: "#"
-        },
-        {
-            title: "Crypto Tracker",
-            category: "Web App",
-            description: "Real-time cryptocurrency monitoring tool with interactive charts and portfolio tracking features.",
-            image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            tech: ["Vue.js", "Chart.js", "CoinGecko API"],
-            link: "#",
-            github: "#"
-        }
-    ];
 
     useEffect(() => {
         const fetchProjects = async () => {

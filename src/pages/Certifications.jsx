@@ -4,30 +4,30 @@ import { Award, ExternalLink, Calendar, Loader2 } from 'lucide-react';
 import { certsApi } from '../services/api';
 import './Certifications.css';
 
+const demoCertifications = [
+    {
+        name: "AWS Certified Solutions Architect",
+        issuer: "Amazon Web Services",
+        date: "Oct 2023",
+        link: "#",
+    },
+    {
+        name: "Professional Cloud Developer",
+        issuer: "Google Cloud",
+        date: "Mar 2023",
+        link: "#",
+    },
+    {
+        name: "Meta Front-End Developer",
+        issuer: "Coursera / Meta",
+        date: "Aug 2022",
+        link: "#",
+    }
+];
+
 const Certifications = () => {
     const [certifications, setCertifications] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const demoCertifications = [
-        {
-            name: "AWS Certified Solutions Architect",
-            issuer: "Amazon Web Services",
-            date: "Oct 2023",
-            link: "#",
-        },
-        {
-            name: "Professional Cloud Developer",
-            issuer: "Google Cloud",
-            date: "Mar 2023",
-            link: "#",
-        },
-        {
-            name: "Meta Front-End Developer",
-            issuer: "Coursera / Meta",
-            date: "Aug 2022",
-            link: "#",
-        }
-    ];
 
     useEffect(() => {
         const fetchCerts = async () => {

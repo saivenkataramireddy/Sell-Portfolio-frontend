@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Server, Wrench, Layout, Loader2 } from 'lucide-react';
+import { Server, Wrench, Layout, Loader2 } from 'lucide-react';
 import { skillsApi } from '../services/api';
 import './Skills.css';
+
+const demoSkills = [
+    {
+        title: "Frontend Development",
+        icon: <Layout className="icon" />,
+        skills: ["React", "Vue.js", "Tailwind CSS", "Framer Motion", "TypeScript"]
+    },
+    {
+        title: "Backend Development",
+        icon: <Server className="icon" />,
+        skills: ["FastAPI", "Python", "PostgreSQL", "MongoDB", "Auth0"]
+    },
+    {
+        title: "Tools & DevOps",
+        icon: <Wrench className="icon" />,
+        skills: ["Git", "Docker", "AWS", "GitHub Actions", "Firebase"]
+    }
+];
 
 const Skills = () => {
     const [skillCategories, setSkillCategories] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const demoSkills = [
-        {
-            title: "Frontend Development",
-            icon: <Layout className="icon" />,
-            skills: ["React", "Vue.js", "Tailwind CSS", "Framer Motion", "TypeScript"]
-        },
-        {
-            title: "Backend Development",
-            icon: <Server className="icon" />,
-            skills: ["FastAPI", "Python", "PostgreSQL", "MongoDB", "Auth0"]
-        },
-        {
-            title: "Tools & DevOps",
-            icon: <Wrench className="icon" />,
-            skills: ["Git", "Docker", "AWS", "GitHub Actions", "Firebase"]
-        }
-    ];
 
     useEffect(() => {
         const fetchSkills = async () => {
