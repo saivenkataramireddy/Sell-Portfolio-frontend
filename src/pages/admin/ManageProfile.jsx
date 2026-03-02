@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Save, Loader2, User, Mail, FileText, Upload } from 'lucide-react';
+import { Save, Loader2, User, Mail, FileText, Upload, Linkedin, Github } from 'lucide-react';
 import { authApi } from '../../services/api';
+import { BACKEND_URL } from '../../config';
 
 const ManageProfile = () => {
     const [profile, setProfile] = useState({
         full_name: '',
         email: '',
         bio: '',
+        description: '',
+        linkedin_url: '',
+        github_url: '',
         profile_picture: '',
         resume_url: ''
     });
@@ -16,7 +20,6 @@ const ManageProfile = () => {
     const [message, setMessage] = useState({ type: '', text: '' });
 
     // Use the backend base URL for images
-    const BACKEND_URL = 'http://127.0.0.1:8000';
 
     useEffect(() => {
         fetchProfile();
@@ -164,6 +167,51 @@ const ManageProfile = () => {
                                 />
                             </div>
                         </div>
+
+                        <div className="form-group">
+                            <label className="stat-label">LinkedIn URL</label>
+                            <div className="input-with-icon-admin" style={{ position: 'relative' }}>
+                                <Linkedin size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                                <input
+                                    value={profile.linkedin_url || ''}
+                                    onChange={(e) => setProfile({ ...profile, linkedin_url: e.target.value })}
+                                    placeholder="https://linkedin.com/in/username"
+                                    style={{ paddingLeft: '3rem', width: '100%', height: '45px', borderRadius: '0.75rem', border: '1px solid var(--border)' }}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="stat-label">GitHub URL</label>
+                            <div className="input-with-icon-admin" style={{ position: 'relative' }}>
+                                <Github size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                                <input
+                                    value={profile.github_url || ''}
+                                    onChange={(e) => setProfile({ ...profile, github_url: e.target.value })}
+                                    placeholder="https://github.com/username"
+                                    style={{ paddingLeft: '3rem', width: '100%', height: '45px', borderRadius: '0.75rem', border: '1px solid var(--border)' }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form-group" style={{ marginTop: '1.5rem' }}>
+                        <label className="stat-label">Home Page Description</label>
+                        <textarea
+                            value={profile.description || ''}
+                            onChange={(e) => setProfile({ ...profile, description: e.target.value })}
+                            placeholder="Tell visitors about yourself (this appears on the home page hero section)"
+                            rows={4}
+                            style={{
+                                width: '100%',
+                                padding: '1rem',
+                                borderRadius: '0.75rem',
+                                border: '1px solid var(--border)',
+                                fontSize: '1rem',
+                                resize: 'vertical',
+                                outline: 'none'
+                            }}
+                        />
                     </div>
 
                     <div className="form-group" style={{ marginTop: '1.5rem' }}>

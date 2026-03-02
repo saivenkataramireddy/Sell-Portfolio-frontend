@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Github, Linkedin, Twitter } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { authApi } from '../services/api';
+import { BACKEND_URL } from '../config';
 import './Home.css';
 
 const Home = () => {
@@ -25,8 +26,8 @@ const Home = () => {
 
     const displayName = profile?.full_name || "Creative Developer";
     const displayBio = profile?.bio || "I am a passionate developer specializing in building beautiful, functional, and user-centered digital products. Let's turn your ideas into reality.";
+    const displayDescription = profile?.description || displayBio;
 
-    const BACKEND_URL = 'http://127.0.0.1:8000';
 
     return (
         <div className="home-container">
@@ -42,7 +43,7 @@ const Home = () => {
                             Hi, I'm <span className="gradient-text">{displayName}</span>
                         </h1>
                         <p className="hero-subtitle">
-                            {displayBio}
+                            {displayDescription}
                         </p>
 
                         <div className="hero-actions">
@@ -52,18 +53,27 @@ const Home = () => {
                             {profile?.resume_url && (
                                 <a
                                     href={`${BACKEND_URL}${profile.resume_url}`}
+                                    download
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn btn-outline"
                                 >
-                                    Download CV <Download size={18} />
+                                    Download Resume <Download size={18} />
                                 </a>
                             )}
                         </div>
 
                         <div className="social-links">
-                            <a href="#!" className="social-icon"><Github size={20} /></a>
-                            <a href="#!" className="social-icon"><Linkedin size={20} /></a>
+                            {profile?.github_url && (
+                                <a href={profile.github_url} target="_blank" rel="noopener noreferrer" className="social-icon">
+                                    <Github size={20} />
+                                </a>
+                            )}
+                            {profile?.linkedin_url && (
+                                <a href={profile.linkedin_url} target="_blank" rel="noopener noreferrer" className="social-icon">
+                                    <Linkedin size={20} />
+                                </a>
+                            )}
                             <a href="#!" className="social-icon"><Twitter size={20} /></a>
                         </div>
                     </motion.div>
@@ -82,6 +92,10 @@ const Home = () => {
                                 src={profile.profile_picture.startsWith('http') ? profile.profile_picture : `${BACKEND_URL}${profile.profile_picture}`}
                                 alt={displayName}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                                onError={(e) => {
+                                    console.error("Image load failed:", e.target.src);
+                                    e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(displayName) + '&background=random';
+                                }}
                             />
                         ) : (
                             <div className="placeholder-image">
