@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
 
-const API_BASE_URL = BACKEND_URL;
+const API_BASE_URL = "https://sell-portfolio-backend.onrender.com";
 
 const api = axios.create({
     baseURL: `${API_BASE_URL}/api`,
